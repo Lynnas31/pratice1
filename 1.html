@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body id="res">
+<script>
+    let Student = function (name, mssv, math, phys, chem) {
+        this.name = name;
+        this.mssv = mssv;
+        this.math = math;
+        this.phys = phys;
+        this.chem = chem;
+        this.avg = (math + phys + chem) / 3
+        this.show = function () {
+            return " Msv " + this.mssv + " name " + this.name + " DTB " + this.avg
+        }
+
+    }
+
+    function QLSV() {
+        this.dssv = [new Student("Na", 234, 9, 9, 9), new Student("BC", 123, 4, 5, 6), new Student("LA", 314, 6, 7, 8)]
+        this.add = function (sv) {
+            this.dssv.push(sv);
+        }
+        this.del = function (mssv) {
+            for (var i = 0; i < this.dssv.length; i++) {
+                if (mssv === this.dssv[i].mssv) {
+                    this.dssv.splice(i, 1)
+
+                }
+            }
+        }
+        this.show = function () {
+            let str = "";
+            for (let i = 0; i < this.dssv.length; i++) {
+                str += this.dssv[i].show() + "<br>"
+            }
+            return str;
+        }
+        this.edit = function (mssv, sv) {
+            for (i = 0; i < this.dssv.length; i++) {
+                if (mssv == this.dssv[i].mssv) {
+                    this.dssv = sv;
+                }
+            }
+        }
+        this.sort = function () {
+            for (let i = 0; i < this.dssv.length-1; i++) {
+                for (let j = i+1; j < this.dssv.length; j++) {
+                    if (this.dssv[i].avg < this.dssv[j].avg){
+                        let term = this.dssv[i]
+                        this.dssv[i] = this.dssv[j]
+                        this.dssv[j] = term
+                    }
+                }
+            }}
+    }
+
+    let qlsv = new QLSV();
+    qlsv.sort();
+    document.getElementById("res").innerHTML = qlsv.show()
+
+</script>
+</body>
+</html>
